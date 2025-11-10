@@ -90,27 +90,28 @@
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
 <script>
-  // Your Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyCfvMjV9K6rXfbZahWvgIDdIIvQ-efxND4",
-    authDomain: "it-logging-system.firebaseapp.com",
-    projectId: "it-logging-system",
-    storageBucket: "it-logging-system.firebasestorage.app",
-    messagingSenderId: "80087894431",
-    appId: "1:80087894431:web:055bc63806b8297ac9d5aa",
-    measurementId: "G-KGV5MX67PC"
-  };
+  <!-- Firebase Compat SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-  const db = firebase.firestore(); // this creates the Firestore database reference
-</script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCfvMjV9K6rXfbZahWvgIDdIIvQ-efxND4",
+      authDomain: "it-logging-system.firebaseapp.com",
+      projectId: "it-logging-system",
+      storageBucket: "it-logging-system.firebasestorage.app",
+      messagingSenderId: "80087894431",
+      appId: "1:80087894431:web:055bc63806b8297ac9d5aa",
+      measurementId: "G-KGV5MX67PC"
+    };
 
-<!-- Your main JS -->
-<script src="script.js"></script>
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    const db = firebase.firestore(); // ✅ db is global
+  </script>
 
+  <script src="script.js"></script>
 
-<script src="script.js"></script>
 </body>
 </html>
