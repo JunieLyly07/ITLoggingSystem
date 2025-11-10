@@ -1,0 +1,138 @@
+/* ----------------- BASE ----------------- */
+:root{
+  --blue-500: #1e90ff;
+  --blue-200: #e6f2ff;
+  --soft-bg: #e0f7ff;
+  --card-shadow: rgba(30,144,255,0.10);
+}
+
+*{box-sizing: border-box}
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: linear-gradient(160deg, #e0f7ff, #ffffff);
+  color: #333;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* decorative circles */
+body::before, body::after {
+  content: ''; position: absolute; border-radius: 50%; pointer-events: none;
+}
+body::before { top: -50px; left: -50px; width: 200px; height: 200px; background: rgba(30,144,255,0.05); }
+body::after  { bottom: -50px; right: -50px; width: 150px; height: 150px; background: rgba(0,191,255,0.05); }
+
+/* Particles container */
+.particle-container{ position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:hidden; z-index:0;}
+.particle-container span{ position:absolute; width:6px; height:6px; background: rgba(30,144,255,0.2); border-radius:50%; animation: floatParticle linear infinite; opacity:0.8;}
+@keyframes floatParticle{ 0%{transform:translateY(100vh) translateX(0) scale(1); opacity:0;}10%{opacity:0.8;}100%{transform:translateY(-10vh) translateX(var(--x-move)) scale(var(--scale)); opacity:0;}}
+
+/* header */
+.header-banner{
+  background: #d0efff; padding: 18px 20px; border-radius: 12px; text-align:center;
+  box-shadow: 0 6px 18px var(--card-shadow); margin-bottom: 20px; z-index:1;
+}
+.header-banner h2{ margin:0; color:var(--blue-500); font-size:26px; text-shadow: 1px 1px 3px rgba(30,144,255,0.2); }
+
+/* layout */
+.main-layout{ display:flex; gap:20px; align-items:flex-start; max-width:1200px; margin:0 auto; z-index:1; }
+.content-container{ flex:1; min-width:600px; }
+
+/* form */
+form{
+  background:#fff; padding:20px; border-radius:12px; box-shadow:0 10px 25px rgba(30,144,255,0.10);
+  display:flex; flex-direction:column; gap:10px;
+}
+input, select, textarea{
+  width:100%; padding:12px 14px; border-radius:12px; border:1px solid #cce4ff; font-size:14px; outline:none;
+  transition: box-shadow .25s ease, transform .12s ease;
+}
+input:focus, select:focus, textarea:focus{ box-shadow:0 0 10px rgba(30,144,255,0.25); transform: translateY(-1px); }
+
+/* Add button */
+form button{
+  padding:12px 24px; background:var(--blue-500); color:#fff; border:none; border-radius:12px; cursor:pointer; align-self:center;
+  font-size:15px; transition: transform .2s ease, box-shadow .2s ease;
+}
+form button:hover{ transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 20px rgba(30,144,255,0.12); }
+
+/* table */
+table{ width:100%; border-collapse:collapse; margin-top:20px; background:#fff; border-radius:12px; overflow:hidden;
+  box-shadow:0 8px 20px rgba(30,144,255,0.1); transition: box-shadow 0.3s ease; table-layout: fixed;}
+table:hover{ box-shadow:0 12px 25px rgba(30,144,255,0.15);}
+th, td{ padding:14px 16px; border-bottom:1px solid #eaf6ff; text-align:left; word-wrap:break-word; }
+th{ background:var(--blue-200); color:var(--blue-500); }
+
+/* row hover */
+tbody tr:hover{ background: rgba(30,144,255,0.08); transform: translateY(-2px); transition: all 0.2s ease; }
+
+/* status dropdown style */
+select{ border-radius:20px; font-weight:bold; padding:6px 12px; cursor:pointer; background:#fff; transition: background-color .25s, color .25s, box-shadow .25s; }
+select:hover{ box-shadow:0 0 6px rgba(30,144,255,0.2); }
+
+/* delete button */
+.delete-btn {
+  background-color: #ffd6d6;
+  color: #a00000;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.delete-btn:hover {
+  background-color: #ffb3b3;
+  transform: scale(1.05);
+}
+.delete-btn:active { transform: scale(0.96); }
+
+/* side panel */
+.side-panel{
+  width:310px; display:flex; flex-direction:column; gap:14px; position:sticky; top:24px; align-self:flex-start;
+}
+
+/* summary cards */
+.summary-cards{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.card{ background:#fff; padding:12px; border-radius:10px; box-shadow:0 6px 18px rgba(30,144,255,0.06); text-align:center; }
+.card-title{ font-size:12px; color:#1c6dd0; margin-bottom:6px; }
+.card-value{ font-size:20px; font-weight:700; color:#1e90ff; }
+
+/* colored card accents */
+.card.pending .card-value{ color:#a00000; }
+.card.inprogress .card-value{ color:#b35900; }
+.card.completed .card-value{ color:#2e7d32; }
+
+/* performance circular */
+.performance-widget{ background:#fff; padding:14px; border-radius:12px; box-shadow:0 6px 18px rgba(30,144,255,0.06); text-align:center; }
+.perf-label{ color:#1c6dd0; font-weight:600; margin-bottom:10px; }
+.circle{ width:120px; height:120px; border-radius:50%; margin:0 auto; display:flex; align-items:center; justify-content:center; background: conic-gradient(#e6f2ff 0deg, #e6f2ff 360deg); }
+.circle-inner{ background:#fff; width:84px; height:84px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; color:#1e90ff; box-shadow:0 6px 12px rgba(30,144,255,0.06); }
+
+/* timeline */
+.timeline-widget{ background:#fff; padding:12px; border-radius:12px; box-shadow:0 6px 18px rgba(30,144,255,0.06); max-height:280px; overflow:auto; }
+.timeline-title{ color:#1c6dd0; font-weight:700; margin-bottom:8px; }
+.timeline-list{ display:flex; flex-direction:column; gap:8px; }
+.timeline-item{ font-size:13px; padding:8px; border-radius:8px; background: #f8fdff; color:#0f2740; box-shadow: inset 0 0 0 1px rgba(30,144,255,0.02); }
+
+/* live monitor (toasts) */
+.live-monitor{ position: fixed; top: 18px; right: 18px; display:flex; flex-direction:column; gap:8px; z-index: 9999; pointer-events:none; }
+.toast{ pointer-events:auto; background:#fff; padding:10px 12px; border-radius:10px; box-shadow:0 10px 30px rgba(30,144,255,0.12); min-width:220px; font-weight:600; color:#0d3a5b; opacity:0; transform: translateY(-8px); transition: opacity .25s ease, transform .25s ease; }
+.toast.show{ opacity:1; transform: translateY(0); }
+
+/* fade-in animation for new rows */
+@keyframes fadeIn{ 0%{opacity:0; transform:translateY(-10px);} 100%{opacity:1; transform:translateY(0);} }
+tbody tr.new-row{ animation: fadeIn .4s ease forwards; }
+
+/* responsive */
+@media(max-width: 980px){
+  .main-layout{ flex-direction:column; gap:15px; }
+  .content-container{ min-width: auto; }
+  .side-panel{ position:relative; width:100%; }
+  #logTable th, #logTable td{ font-size:13px; padding:10px 12px; }
+  form input, form textarea, form select{ font-size:14px; padding:10px 12px; }
+  form button{ padding:10px 20px; font-size:14px; }
+}

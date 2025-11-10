@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IT Log System</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+<div class="particle-container"></div>
+
+<div class="header-banner">
+  <h2>IT Quick Logging System</h2>
+</div>
+
+<div class="main-layout">
+  <div class="content-container">
+    <form id="requestForm">
+      <input type="text" id="employee" placeholder="Employee Name" required>
+      <input type="text" id="issue" placeholder="Issue Description" required>
+      <textarea id="action" placeholder="Action Taken"></textarea>
+      <select id="status">
+        <option value="Pending">Pending</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Completed">Completed</option>
+      </select>
+      <button type="submit">Add Request</button>
+    </form>
+
+    <div class="table-container">
+      <table id="logTable">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Employee</th>
+            <th>Issue</th>
+            <th>Action Taken</th>
+            <th>Status</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div class="table-particles"></div>
+    </div>
+  </div>
+
+  <div class="side-panel">
+    <div class="summary-cards">
+      <div class="card">
+        <div class="card-title">Total</div>
+        <div class="card-value" id="totalCount">0</div>
+      </div>
+      <div class="card pending">
+        <div class="card-title">Pending</div>
+        <div class="card-value" id="pendingCount">0</div>
+      </div>
+      <div class="card inprogress">
+        <div class="card-title">In Progress</div>
+        <div class="card-value" id="inProgressCount">0</div>
+      </div>
+      <div class="card completed">
+        <div class="card-title">Completed</div>
+        <div class="card-value" id="completedCount">0</div>
+      </div>
+    </div>
+
+    <div class="performance-widget">
+      <div class="perf-label">Completion</div>
+      <div class="circle" id="completionCircle">
+        <div class="circle-inner" id="completionPercent">0%</div>
+      </div>
+    </div>
+
+    <div class="timeline-widget">
+      <div class="timeline-title">Recent Logs</div>
+      <div class="timeline-list" id="timelineList"></div>
+    </div>
+    <div class="side-panel-particles"></div>
+  </div>
+</div>
+
+<div class="live-monitor" id="liveMonitor"></div>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyCfvMjV9K6rXfbZahWvgIDdIIvQ-efxND4",
+    authDomain: "it-logging-system.firebaseapp.com",
+    projectId: "it-logging-system",
+    storageBucket: "it-logging-system.firebasestorage.app",
+    messagingSenderId: "80087894431",
+    appId: "1:80087894431:web:055bc63806b8297ac9d5aa",
+    measurementId: "G-KGV5MX67PC"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>
