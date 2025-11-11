@@ -69,11 +69,21 @@ function renderTable(newIndex = -1) {
       renderTable(-1);
     });
 
+    // Action Taken cell with show more/less
+    const actionCellContent = `
+      <td class="action-cell">
+        <div class="action-text" data-full="${escapeHtml(log.action)}">
+          ${escapeHtml(log.action).length > 150 ? escapeHtml(log.action).slice(0, 150) + '...' : escapeHtml(log.action)}
+        </div>
+        ${escapeHtml(log.action).length > 150 ? '<span class="toggle-action">Show more</span>' : ''}
+      </td>
+    `;
+
     row.innerHTML = `
       <td>${log.date}</td>
       <td>${escapeHtml(log.employee)}</td>
       <td>${escapeHtml(log.issue)}</td>
-      <td>${escapeHtml(log.action)}</td>
+      ${actionCellContent}
       <td></td>
       <td><button class="delete-btn" onclick="deleteLog(${index})">Delete</button></td>
     `;
@@ -240,5 +250,27 @@ form.addEventListener('submit', (e) => {
       p.style.opacity = 0;
       setTimeout(() => p.remove(), 600);
     });
+  }
+});
+
+/* ------------------- SHOW MORE / SHOW LESS FOR ACTION TAKEN ------------------- */
+logBody.addEventListener('click', (e) => {
+  if (e.target.classList.contains('toggle-action')) {
+    const toggle = e.target;
+    const cell = toggle.closest('.action-cell');
+    const textDiv = cell.querySelector('.action-text');
+    const full = textDiv.getAttribute('data-full');
+    const short = full.length > 150 ? full.slice(0, 150) + '...' : full;
+
+    const expanded = toggle.getAttribute('data-expanded') === 'true';
+    if (expanded) {
+      textDiv.textContent = short;
+      toggle.textContent = 'Show more';
+      toggle.setAttribute('data-expanded', 'false');
+    } else {
+      textDiv.textContent = full;
+      toggle.textContent = 'Show less';
+      toggle.setAttribute('data-expanded', 'true');
+    }
   }
 });

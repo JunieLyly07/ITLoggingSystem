@@ -153,6 +153,37 @@ body.dark-mode .timeline-item{ background:#2c2c2c; color:#e0e0e0; box-shadow: in
 body.dark-mode .toast{ background:#2c2c2c; color:#e0e0e0; box-shadow:0 6px 18px rgba(0,0,0,0.6);}
 .toast.show{ opacity:1; transform: translateY(0); }
 
+/* --- ACTION TAKEN CELL CONTROL --- */
+td.action-cell {
+  max-width: 280px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+}
+
+/* full text preview on hover */
+td.action-cell:hover {
+  white-space: normal;
+  overflow: visible;
+  background-color: rgba(30,144,255,0.05);
+  z-index: 5;
+}
+
+/* Show More / Show Less link */
+.show-more {
+  color: #1e90ff;
+  cursor: pointer;
+  font-weight: 600;
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 13px;
+}
+body.dark-mode .show-more {
+  color: #90caf9;
+}
+
+
 /* fade-in animation for new rows */
 @keyframes fadeIn{ 0%{opacity:0; transform:translateY(-10px);} 100%{opacity:1; transform:translateY(0);} }
 tbody tr.new-row{ animation: fadeIn .4s ease forwards; }
@@ -165,4 +196,25 @@ tbody tr.new-row{ animation: fadeIn .4s ease forwards; }
   #logTable th, #logTable td{ font-size:13px; padding:10px 12px; }
   form input, form textarea, form select{ font-size:14px; padding:10px 12px; }
   form button{ padding:10px 20px; font-size:14px; }
+}
+
+.action-taken-text {
+  white-space: pre-wrap;
+  overflow: hidden;
+  line-height: 1.5;
+  transition: all 0.3s ease;
+  margin-top: 5px;
+}
+
+.toggle-more {
+  color: var(--accent-color, #007bff);
+  cursor: pointer;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 5px;
+  font-size: 0.9em;
+}
+
+.toggle-more:hover {
+  text-decoration: underline;
 }
